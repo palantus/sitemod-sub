@@ -91,6 +91,7 @@ class Element extends HTMLElement {
           <button class="styled goto${c.status != "started" ? " hidden" : ""}">Goto</button>
           <button class="styled delete${c.status != "stopped" ? " hidden" : ""}">Delete</button>
           <button class="styled adminpass${c.status != "stopped" ? "" : " hidden"}">Copy password</button>
+          <button class="styled admintoken${c.status != "stopped" ? "" : " hidden"}">Copy token</button>
         </td>
         <td>${c.runtimeInfo?.port||""}</td>
       </tr>`).join('');
@@ -143,6 +144,9 @@ class Element extends HTMLElement {
       await this.refreshData();
     } else if(e.target.classList.contains("adminpass")){
       let pass = await api.get(`sub/${id}/adminpass`);
+      navigator.clipboard.writeText(pass)
+    } else if(e.target.classList.contains("admintoken")){
+      let pass = await api.get(`sub/${id}/admintoken`);
       navigator.clipboard.writeText(pass)
     }
   }

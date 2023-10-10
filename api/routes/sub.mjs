@@ -51,6 +51,10 @@ export default (apiRoute, app) => {
     res.json(res.locals.sub.adminPass)
   })
 
+  route.get("/:id/admintoken", permission("sub.manage"), lookupType(Sub, "sub"), (req, res) => {
+    res.locals.sub.remote.get("me/token").then(({token}) => res.json(token))
+  })
+
   route.get("/:id", permission("sub.manage"), lookupType(Sub, "sub"), (req, res) => {
     res.json(res.locals.sub.toObjFull())
   })
