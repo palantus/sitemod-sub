@@ -108,6 +108,7 @@ export async function startProcess(sub, user) {
   processes.push(process)
 
   sub.log("Waiting for api to become available")
+  let curIterations = 0;
   waiter: while(true){
     await new Promise(resolve => setTimeout(resolve, 500));
     try{
@@ -115,6 +116,12 @@ export async function startProcess(sub, user) {
       break waiter;
     } catch{}
     sub.log("Still not online...")
+    curIterations++;
+    if(curIterations > 200){
+      sub.log("Giving up.")
+      await stopProcess(sub)
+      return;
+    }
   }
   sub.log("API ready")
 
