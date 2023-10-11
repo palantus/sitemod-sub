@@ -118,7 +118,7 @@ export async function startProcess(sub, user) {
     sub.log("Still not online...")
     curIterations++;
     if(curIterations > 200){
-      sub.log("Giving up.")
+      sub.log(`Giving up. Consider trying to run npm install manually under storage/subs/${sub.id}. Also consider adding argument --no-bin-links if it is over smb to avoid symlinks.`)
       await stopProcess(sub)
       return;
     }
