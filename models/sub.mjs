@@ -49,6 +49,7 @@ export default class Sub extends Entity {
 
   patch(obj){
     if(typeof obj.title === "string" && obj.title) this.title = obj.title;
+    if(typeof obj.autoStart === "boolean") this.autoStart = obj.autoStart;
   }
 
   get status(){
@@ -70,6 +71,7 @@ export default class Sub extends Entity {
       id: this.id,
       title: this.title,
       status: this.status,
+      autoStart: !!this.autoStart,
       runtimeInfo: getRuntimeInfo(this)
     }
   }

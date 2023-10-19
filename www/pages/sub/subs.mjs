@@ -16,6 +16,7 @@ template.innerHTML = `
   <style>
     #container{
       position: relative;
+      padding: 10px;
     }
     table{
       width: 100%;
@@ -25,9 +26,9 @@ template.innerHTML = `
     }
 
     table thead th:nth-child(1){width: 80px}
-    table thead th:nth-child(2){width: 200px}
+    table thead th:nth-child(2){width: 150px}
     table thead th:nth-child(3){width: 75px}
-    table thead th:nth-child(4){width: 175px}
+    table thead th:nth-child(4){width: 270px}
 
     tr span.status.stopped{color: red;}
     tr span.status.running{color: green;}
