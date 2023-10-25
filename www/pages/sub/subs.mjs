@@ -1,13 +1,13 @@
 const elementName = 'subs-page'
 
-import api from "/system/api.mjs"
-import "/components/action-bar.mjs"
-import "/components/action-bar-item.mjs"
-import "/components/field-ref.mjs"
-import "/components/field-edit.mjs"
-import {on, off} from "/system/events.mjs"
-import {siteURL} from "/system/core.mjs"
-import {showDialog, alertDialog, confirmDialog} from "/components/dialog.mjs"
+import api from "../../system/api.mjs"
+import "../../components/action-bar.mjs"
+import "../../components/action-bar-item.mjs"
+import "../../components/field-ref.mjs"
+import "../../components/field-edit.mjs"
+import {on, off} from "../../system/events.mjs"
+import {siteURL} from "../../system/core.mjs"
+import {showDialog, alertDialog, confirmDialog} from "../../components/dialog.mjs"
 
 const template = document.createElement('template');
 template.innerHTML = `

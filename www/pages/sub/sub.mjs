@@ -1,14 +1,14 @@
 const elementName = 'sub-page'
 
-import {state, goto} from "/system/core.mjs"
-import api from "/system/api.mjs"
-import "/components/field-edit.mjs"
-import "/components/field-ref.mjs"
-import "/components/field-list.mjs"
-import "/components/action-bar.mjs"
-import "/components/action-bar-item.mjs"
-import "/components/collapsible-card.mjs"
-import "/components/field-edit-inline.mjs"
+import {state, goto} from "../../system/core.mjs"
+import api from "../../system/api.mjs"
+import "../../components/field-edit.mjs"
+import "../../components/field-ref.mjs"
+import "../../components/field-list.mjs"
+import "../../components/action-bar.mjs"
+import "../../components/action-bar-item.mjs"
+import "../../components/collapsible-card.mjs"
+import "../../components/field-edit-inline.mjs"
 import { alertDialog, confirmDialog, showDialog } from "../../components/dialog.mjs"
 
 const template = document.createElement('template');
