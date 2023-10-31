@@ -56,6 +56,7 @@ export default class Sub extends Entity {
       this.showInMenu = obj.showInMenu;
       this.refreshMenuFromSetup(user);
     }
+    if(typeof obj.fixedPort === "number" || obj.fixedPort === null) this.fixedPort = obj.fixedPort;
   }
 
   refreshMenuFromSetup(user){
@@ -98,6 +99,7 @@ export default class Sub extends Entity {
       status: this.status,
       autoStart: !!this.autoStart,
       showInMenu: !!this.showInMenu,
+      fixedPort: this.fixedPort || null,
       runtimeInfo: getRuntimeInfo(this)
     }
   }

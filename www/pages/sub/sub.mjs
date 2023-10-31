@@ -58,6 +58,7 @@ template.innerHTML = `
       <field-edit type="text" label="Title" id="title"></field-edit>
       <field-edit type="checkbox" label="Auto-start" id="autoStart"></field-edit>
       <field-edit type="checkbox" label="Show in menu" id="showInMenu"></field-edit>
+      <field-edit type="number" label="Fixed port" id="fixedPort" title="Runs the sub on a specific port every time"></field-edit>
     </field-list>
     <br>
 
@@ -106,6 +107,7 @@ class Element extends HTMLElement {
     this.shadowRoot.getElementById('title').setAttribute("value", this.sub.title || "N/A")
     this.shadowRoot.getElementById('autoStart').setAttribute("value", this.sub.autoStart)
     this.shadowRoot.getElementById('showInMenu').setAttribute("value", this.sub.showInMenu)
+    this.shadowRoot.getElementById('fixedPort').setAttribute("value", this.sub.fixedPort || "")
 
     this.shadowRoot.querySelectorAll("field-edit:not([disabled])").forEach(e => e.setAttribute("patch", `sub/${this.subId}`));
 

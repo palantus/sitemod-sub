@@ -87,7 +87,7 @@ export function getRuntimeInfo(sub){
 }
 
 export async function startProcess(sub, user) {
-  let port = await getPortFree()
+  let port = sub.fixedPort ? parseInt(sub.fixedPort) : await getPortFree()
   sub.log(`Staring process on port ${port}`)
   
   let subPath = join(global.sitecore.storagePath, 'subs', sub.id)
