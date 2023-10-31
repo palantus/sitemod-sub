@@ -6,13 +6,11 @@ import "../../components/action-bar-item.mjs"
 import "../../components/field-ref.mjs"
 import "../../components/field-edit.mjs"
 import {on, off} from "../../system/events.mjs"
-import {siteURL} from "../../system/core.mjs"
+import {siteURL, stylesheets} from "../../system/core.mjs"
 import {showDialog, alertDialog, confirmDialog} from "../../components/dialog.mjs"
 
 const template = document.createElement('template');
 template.innerHTML = `
-  <link rel='stylesheet' href='/css/global.css'>
-  <link rel='stylesheet' href='/css/searchresults.css'>
   <style>
     #container{
       position: relative;
@@ -67,7 +65,8 @@ class Element extends HTMLElement {
   constructor() {
     super();
 
-    this.attachShadow({ mode: 'open' });
+    this.attachShadow({ mode: 'open' })
+        .adoptedStyleSheets = [stylesheets.global, stylesheets.searchresults];
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
     this.refreshData = this.refreshData.bind(this);
