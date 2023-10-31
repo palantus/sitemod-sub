@@ -24,7 +24,7 @@ export default (apiRoute, app) => {
   })
 
   route.patch("/:id", permission("sub.edit"), lookupType(Sub, "sub"), (req, res) => {
-    res.locals.sub.patch(req.body)
+    res.locals.sub.patch(req.body, res.locals.user)
     res.json(res.locals.sub.toObj())
   })
 

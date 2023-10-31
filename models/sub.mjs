@@ -2,6 +2,8 @@ import Entity, {query} from "entitystorage"
 import LogEntry from "../../../models/logentry.mjs"
 import { checkCreateSub, deleteSubFiles, getRuntimeInfo, startProcess, stopProcess } from "../services/handler.mjs"
 import Remote from "../../../models/remote.mjs"
+import MenuItem from "../../../models/menuitem.mjs"
+import { generateMenu } from "../../../services/menu.mjs";
 
 export default class Sub extends Entity {
   initNew(id, title) {
@@ -47,9 +49,28 @@ export default class Sub extends Entity {
     return this.rels.log?.map(e => LogEntry.from(e))||[]
   }
 
-  patch(obj){
+  patch(obj, user){
     if(typeof obj.title === "string" && obj.title) this.title = obj.title;
     if(typeof obj.autoStart === "boolean") this.autoStart = obj.autoStart;
+    if(typeof obj.showInMenu === "boolean") {
+      this.showInMenu = obj.showInMenu;
+      this.refreshMenuFromSetup(user);
+    }
+  }
+
+  refreshMenuFromSetup(user){
+    let mi = this.menuItem;
+    if(this.showInMenu){
+      if(mi) {
+        mi.title = this.title;
+        return;
+      }
+      mi = new MenuItem(this.title, "/Subs", `/_${this.id}`)
+      this.rel(mi, "menuitem")
+    } else {
+      mi?.delete();
+    }
+    generateMenu();
   }
 
   get status(){
@@ -58,6 +79,10 @@ export default class Sub extends Entity {
 
   get remote(){
     return Remote.from(this.related.remote) || null;
+  }
+
+  get menuItem(){
+    return MenuItem.from(this.related.menuitem)
   }
 
   delete(){
@@ -72,6 +97,7 @@ export default class Sub extends Entity {
       title: this.title,
       status: this.status,
       autoStart: !!this.autoStart,
+      showInMenu: !!this.showInMenu,
       runtimeInfo: getRuntimeInfo(this)
     }
   }

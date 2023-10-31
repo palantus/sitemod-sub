@@ -57,6 +57,7 @@ template.innerHTML = `
       <field-edit type="text" label="Id" id="id" disabled></field-edit>
       <field-edit type="text" label="Title" id="title"></field-edit>
       <field-edit type="checkbox" label="Auto-start" id="autoStart"></field-edit>
+      <field-edit type="checkbox" label="Show in menu" id="showInMenu"></field-edit>
     </field-list>
     <br>
 
@@ -104,6 +105,7 @@ class Element extends HTMLElement {
     this.shadowRoot.getElementById('id').setAttribute("value", this.sub.id)
     this.shadowRoot.getElementById('title').setAttribute("value", this.sub.title || "N/A")
     this.shadowRoot.getElementById('autoStart').setAttribute("value", this.sub.autoStart)
+    this.shadowRoot.getElementById('showInMenu').setAttribute("value", this.sub.showInMenu)
 
     this.shadowRoot.querySelectorAll("field-edit:not([disabled])").forEach(e => e.setAttribute("patch", `sub/${this.subId}`));
 
